@@ -11,43 +11,82 @@
     <script src="/bootstrap/dist/js/bootstrap.js"></script>
 
     <!---load angular -->
-    <script src=" /angular/angular.min.js "></script>
+    <script src="/angular/angular.min.js "></script>
 
-   
+
     <!-- my app -->
-    <script src="index.js "></script>
+    <script src="/index.js "></script>
 
-   
+
 </head>
 
 <!-- if <body ng-controller="MyCtrl as abc "> then abc.message -->
 
-<body ng-controller="MyCtrl as myCtrl ">
+<body ng-controller="MyCtrl as myCtrl">
 
-    <form name="myForm " novalidate ng-submit="myCtrl.processForm() ">
+    <div class="container">
+        <h1>Feedback</h1>
+        <form class="form-horizontal" name="myForm " novalidate ng-submit="myCtrl.processForm() ">
+            <div class="form-group">
+                <label for="inputName3" class="col-sm-2 control-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="name" class="form-control" id="inputName3" placeholder="Name" ng-model="myCtrl.name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="myCtrl.email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPhone3" class="col-sm-2 control-label">Phone</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="inputPhone3" placeholder="Phone" ng-model="myCtrl.phone">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputComment3" class="col-sm-2 control-label">Comment</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" rows="3" id="inputComment3" placeholder="Please drop us a note." ng-model="myCtrl.comment"></textarea>
+                </div>
+            </div>
 
-        Name:
-        <input type=" text " size="30 " name="name " ng-model="myCtrl.name ">
 
-        <br><br>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
+                    <div class="radio-inline">
+                        <label>
+                    <input type="radio" name="optionsRadios" id="exp-good" value="good" checked ng-model="myCtrl.exp">
+                        Good
+                     </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label>
+                     <input type="radio" name="optionsRadios" id="exp-neutral" value="neutral" ng-model="myCtrl.exp">
+                         Neutral
+                    </label>
+                    </div>
+                    <div class="radio-inline">
+                        <label>
+                    <input type="radio" name="optionsRadios" id="exp-bad" value="bad" ng-model="myCtrl.exp">
+                        Bad
+                    </label>
+                    </div>
+                </div>
+            </div>
 
-Email:
-        <input type=" text " size="30 " name="name " ng-model="myCtrl.email ">
-<input type="number " name="age ng-model="myCtrl.age">
-
-        <br><br>
-
-        <button type="button " ng-click="myCtrl.clearForm() ">
-             Clear
-        </button>
-
-        <button type="button" ng-click="myCtrl.hide()">
-            Hide
-        </button>
-
-        <button type="submit ">Process</button>
+            <div class="btn-group btn-group-justified">
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-success">Submit </button>
+                    <button class="btn btn-default" type="button" ng-click="myCtrl.clearForm()">Reset</button>
+                </div>
+            </div>
         </form>
+    </div>
 
-        </body>
+</body>
+
 
 </html>

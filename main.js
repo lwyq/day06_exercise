@@ -9,7 +9,7 @@ var app = express();
 
 
 //Mount public as a static resource directory
-var staticResources = ["/public", "bower_components"]
+var staticResources = ["/public", "/bower_components"]
 for (var i in staticResources)
     app.use(express.static(__dirname + staticResources[i]))
 
