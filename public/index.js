@@ -68,6 +68,11 @@
             myCtrl.exp = "";
         };
 
+myCtrl.isvalid = function(form, fieldName){
+    console.log("fieldName = " + form[fieldName].$invalid);
+    return (form[fieldName].$invalid);
+}
+
 
     }
 

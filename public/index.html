@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>main.html</title>
     <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/index.css">
     <script src="/jquery/dist/jquery.js"></script>
     <script src="/bootstrap/dist/js/bootstrap.js"></script>
 
@@ -26,51 +27,67 @@
 
     <div class="container">
         <h1>Feedback</h1>
-        <form class="form-horizontal" name="myForm " novalidate ng-submit="myCtrl.processForm() ">
-            <div class="form-group">
+        <form class="form-horizontal" name="myForm" novalidate ng-submit="myCtrl.processForm() ">
+            <div class="form-group" ng-class="{ 'has-error': myForm.name.$invalid && myForm.name.$dirty }">
                 <label for="inputName3" class="col-sm-2 control-label">Name</label>
                 <div class="col-sm-10">
-                    <input type="name" class="form-control" id="inputName3" placeholder="Name" ng-model="myCtrl.name">
+                    <input type="name" class="form-control" id="inputName3" placeholder="Name" name="name" required ng-model="myCtrl.name">
+                    <span class="help-block" ng-if="myForm.name.$invalid && myForm.name.$dirty">
+                    Please enter your name.
+                    </span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-class="{ 'has-error': myForm.email.$invalid && myForm.email.$dirty }">
                 <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email" ng-model="myCtrl.email">
+                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email" name="email" required ng-model="myCtrl.email">
+                    <span class="help-block" ng-if="myForm.email.$invalid && myForm.email.$dirty">
+                    Please enter valid email.
+                    </span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-class="{ 'has-error': myForm.number.$invalid && myForm.number.$dirty }">
                 <label for="inputPhone3" class="col-sm-2 control-label">Phone</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" id="inputPhone3" placeholder="Phone" ng-model="myCtrl.phone">
+                    <input type="number" class="form-control" id="inputPhone3" placeholder="Phone" name="phone" required ng-model="myCtrl.phone">
+                    <span class="help-block" ng-if="myForm.email.$invalid && myForm.email.$dirty">
+                    Please enter valid phone number.
+                    </span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-class="{ 'has-error': myForm.comment.$invalid && myForm.comment.$dirty }">
                 <label for="inputComment3" class="col-sm-2 control-label">Comment</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" rows="3" id="inputComment3" placeholder="Please drop us a note." ng-model="myCtrl.comment"></textarea>
+                    <textarea class="form-control" rows="3" id="inputComment3" placeholder="Please drop us a note." name="comment" required ng-model="myCtrl.comment">
+                    </textarea>
                 </div>
             </div>
 
 
-            <div class="form-group">
+            <div class="form-group has-error">
                 <div class="col-sm-offset-2 col-sm-10">
                     <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
                     <div class="radio-inline">
                         <label>
-                    <input type="radio" name="optionsRadios" id="exp-good" value="good" checked ng-model="myCtrl.exp">
+                    <input type="radio" name="optionsRadios" id="exp-good" value="good" 
+                    ng-model="myCtrl.exp"
+                    required ng-class="{error: myForm.optionsRadios.$invalid, correct: !myForm.optionsRadios.$invalid }">
                         Good
                      </label>
                     </div>
                     <div class="radio-inline">
                         <label>
-                     <input type="radio" name="optionsRadios" id="exp-neutral" value="neutral" ng-model="myCtrl.exp">
+                     <input type="radio" name="optionsRadios" id="exp-neutral" value="neutral" 
+                     ng-model="myCtrl.exp"
+                     required ng-class="{error: myForm.optionsRadios.$invalid, correct: !myForm.optionsRadios.$invalid }">
                          Neutral
                     </label>
                     </div>
                     <div class="radio-inline">
                         <label>
-                    <input type="radio" name="optionsRadios" id="exp-bad" value="bad" ng-model="myCtrl.exp">
+                    <input type="radio" name="optionsRadios" id="exp-bad" value="bad" 
+                    ng-model="myCtrl.exp"
+                    required ng-class="{error: myForm.optionsRadios.$invalid, correct: !myForm.optionsRadios.$invalid }">
                         Bad
                     </label>
                     </div>
@@ -79,10 +96,20 @@
 
             <div class="btn-group btn-group-justified">
                 <div class="btn-group">
-                    <button type="submit" class="btn btn-success">Submit </button>
+                    <button type="submit" class="btn btn-lg btn-primary" disabled="disabled" ng-disabled="myForm.$invalid">Submit</button>
+
                     <button class="btn btn-default" type="button" ng-click="myCtrl.clearForm()">Reset</button>
                 </div>
             </div>
+
+            <table>
+                <tr>
+                    <td colspan="2">
+                        invalid: {{myForm.$invalid}}, name: {{myForm.name.$dirty}}, email:{{myForm.email.$dirty}}, phone:{{myForm.phone.$dirty}},
+                        comment:{{myForm.comment.$dirty}}, options:{{myForm.optionsRadios.$dirty}} form: {{myForm.$dirty}}
+
+                    </td>
+            </table>
         </form>
     </div>
 
